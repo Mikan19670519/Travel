@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div id="tabs" class="col-md-8">
+        <div class="tab" role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active border-right">
+                    <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plane"></span> Flights</a>
+                </li>
+                <li class="border-right">
+                    <a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-cutlery"></span> Hotels</a>
+                </li>
+                <li class="border-right">
+                    <a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Flights + Hotels <span class="redspan">Save</span></a>
+                </li>
+                <li>
+                    <a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-ice-lolly-tasted"></span> Holidays</a>
+                </li>
+            </ul>
+            <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane active" id="Section1">
+                    <div class="row">
+                        <div class="col-xs-5 left-align">
+                            <h4><strong>BOOK YOUR FLIGHTS</strong></h4>
+                        </div>
+                        <div class="col-xs-5 right-align">
+                            <button type="button" id="domestic" class="btn" data-toggle="modal" onclick="changeDisplay('#domestic'); return false;">Domestic</button>
+                            <button type="button" id="international" class="btn" data-toggle="modal" onclick="changeDisplay('#international'); return false;">International</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5 left-align">
+                            <span class="stretched-text"><strong>FROM</strong></span><br />
+                            <select name="dropdown">
+                                <option value="Cape Town International" selected>Cape Town International</option>
+                                <option value="OR Tambo JHB">OR Tambo JHB</option>
+                                <option value="Durban International">Durban International</option>
+                                <option value="PE Internationa">PE Internationa</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-5 left-align">
+                            <span class="stretched-text"><strong>TO</strong></span><br />
+                            <select name="dropdown">
+                                <option value="Cape Town International">Cape Town International</option>
+                                <option value="OR Tambo JHB" selected>OR Tambo JHB</option>
+                                <option value="Durban International">Durban International</option>
+                                <option value="PE Internationa">PE Internationa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 35px;">
+                        <div class="col-xs-3 left-align">
+                            <span class="stretched-text"><strong>DEPARTURE</strong></span><br />
+                            <input type="text" id="datepicker1" class="datepicker">
+                        </div>
+                        <div class="col-xs-3 left-align">
+                            <span class="stretched-text"><strong>RETURN</strong></span><br />
+                            <input type="text" id="datepicker2" class="datepicker">
+                        </div>
+                        <div class="col-xs-3 left-align">
+                            <span class="stretched-text"><strong>ADULTS</strong></span><br />
+                            <input type="text" value="2" style="width: 110%">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 70px;">
+                        <div class="col-xs-5 left-align">
+                            <button type="button" id="search" class="btn active-button" data-toggle="modal">SEARCH FLIGHTS</button>
+                        </div>
+                        <div class="col-xs-5 right-align">
+                            <a href="#"><span class="fancy-font">Advantage Search</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Section2">
+                    <h3>Hotels</h3>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Section3">
+                    <h3>Flight and Hotels</h3>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Section4">
+                    <h3>Holidays</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+    $(document).ready(function () {
+        $('#domestic').addClass('active-button');
+    });
+
+    $(function () {
+        $('#datepicker1').datepicker();
+        $('#datepicker2').datepicker();
+    })
+
+    $('#tabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    function changeDisplay(e) {
+        $('#domestic').removeClass('active-button');
+        $('#international').removeClass('active-button');
+        $(e).addClass('active-button');
+    }
+</script>
